@@ -1,0 +1,43 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.login-container {
+  width: 300px;
+  padding: 16px;
+  background-color: #f1f1f1;
+  margin: 0 auto;
+  margin-top: 100px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+#loginForm {
+  display: flex;
+  flex-direction: column;
+}
+
+#loginForm label {
+  margin-bottom: 5px;
+}
+
+#loginForm input[type="text"],
+#loginForm input[type="password"] {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+#loginForm input[type="submit"] {
+  cursor: pointer;
+  padding: 10px;
+  color: white;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 4px;
+}
+
+#loginForm input[type="submit"]:hover {
+  background-color: #45a049;
+}

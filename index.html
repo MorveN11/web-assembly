@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Login</title>
+</head>
+
+
+<body>
+  <script>
+    fetch('index.wasm') // Cargar el archivo WASM
+      .then(response => response.arrayBuffer())
+      .then(bytes => {
+        const memory = new WebAssembly.Memory({ initial: 1 });
+        return WebAssembly.instantiate(bytes, { js: { mem: memory } });
+      })
+      .then(module => {
+        const { validateCredentials } = module.instance.exports;
+
+        document.getElementById("loginForm").addEventListener("submit", function (event) {
+          event.preventDefault(); // Evita que se recargue la página al enviar el formulario
+
+          const usernamePtr = module.instance.exports.__retain(module.instance.exports.__allocString(document.getElementById("username").value));
+          const passwordPtr = module.instance.exports.__retain(module.instance.exports.__allocString(document.getElementById("password").value));
+
+          const isValid = validateCredentials(usernamePtr, passwordPtr);
+
+          module.instance.exports.__release(usernamePtr);
+          module.instance.exports.__release(passwordPtr);
+
+          if (isValid) {
+            alert("Inicio de sesión exitoso como administrador.");
+          } else {
+            alert("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
+          }
+        });
+      });
+  </script>
+  <div class="login-container">
+    <form id="loginForm">
+      <label for="username">Username:</label><br>
+      <input type="text" id="username" name="username"><br>
+      <label for="password">Password:</label><br>
+      <input type="password" id="password" name="password"><br>
+      <input type="submit" value="Login">
+    </form>
+  </div>
+</body>
+
+</html>
