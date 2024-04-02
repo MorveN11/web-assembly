@@ -1,0 +1,142 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #282828;
+  padding: 50px 50px;
+  overflow-y: hidden;
+}
+
+header > h1 {
+  color: #fff;
+  font-size: 2.5em;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  text-shadow: 4px 4px 2px rgba(0, 0, 0);
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin-bottom: 100px;
+}
+
+.container {
+  background-image: url('assets/cross.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 800px;
+  height: 567px;
+  box-shadow: 10px 10px 10px 2px rgba(0, 0, 0, .8);
+  border-radius: 15px;
+  position: relative;
+  overflow: hidden;
+}
+
+.car {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+#car-1 {
+  background-image: url('assets/car-1.png');
+  top: 0px;
+  left: 41.5%;
+  transform: rotate(180deg);
+}
+
+#car-2 {
+  background-image: url('assets/car-2.png');
+  top: 38%;
+  right: 0px;
+  transform: rotate(270deg);
+}
+
+#car-3 {
+  background-image: url('assets/car-3.png');
+  bottom: 0px;
+  left: 51.5%;
+  transform: rotate(360deg);
+}
+
+#car-4 {
+  background-image: url('assets/car-4.png');
+  top: 52%;
+  left: 0px;
+  transform: rotate(90deg);
+}
+
+.traffic-lights {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 180px;
+  height: 180px;
+}
+
+.traffic-lights > div {
+  position: absolute;
+  width: 17px;
+  height: 45px;
+  border-radius: 80px;
+  background-color: #2c3e50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 3px;
+  box-shadow: -2px 2px 1px 1px rgba(0, 0, 0, .8);
+}
+
+#traffic-light-1 {
+  top: -23px;
+  left: 5px;
+}
+
+#traffic-light-2 {
+  top: -8px;
+  right: -10px;
+  transform: rotate(90deg);
+}
+
+#traffic-light-3 {
+  bottom: -23px;
+  right: 5px;
+  transform: rotate(180deg);
+}
+
+#traffic-light-4 {
+  bottom: -8px;
+  left: -10px;
+  transform: rotate(270deg);
+}
+
+.light {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #742727;
+}
+
+.red {
+  background-color: #c0392b;
+  box-shadow: 0 0 10px 1px #c0392b;
+}
+
+.yellow {
+  background-color: #f1c40f;
+  box-shadow: 0 0 10px 1px #f1c40f;
+}
+
+.green {
+  background-color: #2ecc71;
+  box-shadow: 0 0 10px 1px #2ecc71;
+}
