@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.ico" />
+  <title>Traffic Crossing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Traffic Crossing - Systems Programming</h1>
+  </header>
+  <main>
+    <div class="container">
+      <div class="car" id="car-1"></div>
+      <div class="car" id="car-2"></div>
+      <div class="car" id="car-3"></div>
+      <div class="car" id="car-4"></div>
+      <div class="traffic-lights">
+        <div id="traffic-light-1">
+          <div class="light top" color="green"></div>
+          <div class="light top" color="yellow"></div>
+          <div class="light red top" color="red"></div>
+        </div>
+        <div id="traffic-light-2">
+          <div class="light green right" color="green"></div>
+          <div class="light right" color="yellow"></div>
+          <div class="light right" color="red"></div>
+        </div>
+        <div id="traffic-light-3">
+          <div class="light bottom" color="green"></div>
+          <div class="light bottom" color="yellow"></div>
+          <div class="light red bottom" color="red"></div>
+        </div>
+        <div id="traffic-light-4">
+          <div class="light green left" color="green"></div>
+          <div class="light left" color="yellow"></div>
+          <div class="light left" color="red"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <script>
+    const $rightLights = document.querySelectorAll('.right');
+    const $leftLights = document.querySelectorAll('.left');
+    const $topLights = document.querySelectorAll('.top');
+    const $bottomLights = document.querySelectorAll('.bottom');
+    const cars = [
+      document.getElementById('car-1'),
+      document.getElementById('car-2'),
+      document.getElementById('car-3'),
+      document.getElementById('car-4'),
+    ];
+
+    const FRAME_RATE = 16;
+
+    // Fetch and instantiate the module
+    fetch("build/release.wasm")
+      .then(response => response.arrayBuffer())
+      .then(buffer => WebAssembly.instantiate(buffer, {
+        env: {
+          abort() {},
+        },
+      }))
+      .then(module => {
+        const exports = module.instance.exports;
+
+        // Initialize the module with the necessary parameters
+        exports.init();
+
+        function updateTrafficLights() {
+          const lightStates = exports.getLightStates();
+          const leftRightState = lightStates[0];
+          const topBottomState = lightStates[1];
+
+          $leftLights.forEach((light, index) => {
+            light.classList.toggle('green', index === leftRightState);
+            light.classList.toggle('yellow', index === (leftRightState + 1) % 3);
+            light.classList.toggle('red', index === (leftRightState + 2) % 3);
+          });
+
+          $rightLights.forEach((light, index) => {
+            light.classList.toggle('green', index === leftRightState);
+            light.classList.toggle('yellow', index === (leftRightState + 1) % 3);
+            light.classList.toggle('red', index === (leftRightState + 2) % 3);
+          });
+
+          $topLights.forEach((light, index) => {
+            light.classList.toggle('green', index === topBottomState);
+            light.classList.toggle('yellow', index === (topBottomState + 1) % 3);
+            light.classList.toggle('red', index === (topBottomState + 2) % 3);
+          });
+
+          $bottomLights.forEach((light, index) => {
+            light.classList.toggle('green', index === topBottomState);
+            light.classList.toggle('yellow', index === (topBottomState + 1) % 3);
+            light.classList.toggle('red', index === (topBottomState + 2) % 3);
+          });
+        }
+
+        function updateCarPositions() {
+          const positions = exports.getCarPositions();
+          cars.forEach((car, index) => {
+            if (car) {
+              car.style.transform = `translate(${positions[index]}px, 0)`;
+            }
+          });
+        }
+
+        // Update about 30 times a second
+        (function update() {
+          setTimeout(update, FRAME_RATE);
+          exports.step();
+        })();
+
+        // Keep rendering the output
+        (function render() {
+          requestAnimationFrame(render);
+          updateTrafficLights();
+          updateCarPositions();
+        })();
+      })
+      .catch(err => {
+        alert("Failed to load WASM: " + err.message);
+        console.log(err.stack);
+      });
+  </script>
+</body>
+</html>
