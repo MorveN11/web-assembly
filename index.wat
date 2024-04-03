@@ -2,6 +2,9 @@
   (type $t0 (func (param i32 i32) (result i32)))
   (type $t1 (func (param i32) (result i32)))
   (type $t2 (func (param i32 i32 i32 i32 i32) (result i32)))
+
+  ;; Function: checkCount
+  ;; Checks the count and returns 0 if count is 2, otherwise increments the count by 1
   (func $checkCount (export "checkCount") (type $t1) (param $p0 i32) (result i32)
     (return
       (if $I0 (result i32)
@@ -14,6 +17,9 @@
           (i32.add
             (local.get $p0)
             (i32.const 1))))))
+
+  ;; Function: moveCars
+  ;; Moves the cars based on the provided parameters
   (func $moveCars (export "moveCars") (type $t2) (param $p0 i32) (param $p1 i32) (param $p2 i32) (param $p3 i32) (param $p4 i32) (result i32)
     (if $I3
       (if $I0 (result i32)
@@ -53,6 +59,9 @@
             (global.get $CAR_WIDTH)))))
     (return
       (local.get $p0)))
+
+  ;; Function: moveHorizontalCars
+  ;; Moves the horizontal cars by calling the moveCars function with specific parameters
   (func $moveHorizontalCars (export "moveHorizontalCars") (type $t0) (param $p0 i32) (param $p1 i32) (result i32)
     (return
       (call $moveCars
@@ -61,6 +70,9 @@
         (global.get $HRZ_MIN_INVALID_POS)
         (global.get $HRZ_MAX_INVALID_POS)
         (global.get $MAX_WIDTH))))
+
+  ;; Function: moveVerticalCars
+  ;; Moves the vertical cars by calling the moveCars function with specific parameters
   (func $moveVerticalCars (export "moveVerticalCars") (type $t0) (param $p0 i32) (param $p1 i32) (result i32)
     (return
       (call $moveCars
@@ -69,8 +81,12 @@
         (global.get $VERTICAL_MIN_INVALID_POS)
         (global.get $VERTICAL_MAX_INVALID_POS)
         (global.get $MAX_HEIGHT))))
+
+  ;; Table and memory definitions 
   (table $T0 1 1 funcref)
   (memory $memory (export "memory") 0)
+
+  ;; Global constants
   (global $VELOCITY (export "VELOCITY") i32 (i32.const 2))
   (global $HRZ_MIN_INVALID_POS (export "HRZ_MIN_INVALID_POS") i32 (i32.const 240))
   (global $HRZ_MAX_INVALID_POS (export "HRZ_MAX_INVALID_POS") i32 (i32.const 280))
@@ -79,8 +95,12 @@
   (global $MAX_WIDTH (export "MAX_WIDTH") i32 (i32.const 920))
   (global $MAX_HEIGHT (export "MAX_HEIGHT") i32 (i32.const 687))
   (global $CAR_WIDTH (export "CAR_WIDTH") i32 (i32.const 60))
+
+  ;; Other global variables
   (global $g8 i32 (i32.const 8))
   (global $g9 (mut i32) (i32.const 32776))
   (global $g10 i32 (i32.const 32776))
+
+  ;; Element section
   (elem $e0 (i32.const 1) func)
 )
