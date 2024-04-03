@@ -1,0 +1,39 @@
+.wall {
+    position: absolute;
+    width: 5px;
+    height: 100vh;
+    background-color: transparent;
+    top: 0;
+    left: 50%;
+    transform: translateX(-130px);
+}
+
+.wall-second {
+    position: absolute;
+    width: 5px;
+    height: 100vh;
+    background-color: transparent;
+    top: 0;
+    left: 50%;
+    transform: translateX(110px);
+}
+
+.wall-third {
+    position: absolute;
+    width: 120vh;
+    height: 5px;
+    background-color: transparent;
+    top: 375px;
+    left: 0%;
+    transform: translateY(110px);
+}
+
+.wall-fourth {
+    position: absolute;
+    width: 120vh;
+    height: 5px;
+    background-color: transparent;
+    top: 640px;
+    left: 0%;
+    transform: translateY(110px);
+}  

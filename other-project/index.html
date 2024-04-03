@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Street</title>
+    <link rel="stylesheet" href="styles/styles-car.css">
+    <link rel="stylesheet" href="styles/styles-street.css">
+    <link rel="stylesheet" href="styles/styles-traffic-ligth.css">
+    <link rel="stylesheet" href="styles/styles-wall.css">
+</head>
+<body>
+    <div class="street-container">
+        <img id="street" src="assets/street.png">
+    </div>
+    <div class="traffic-light-container">
+        <img class="traffic-light" src="assets/trafficLightRed.png">
+    </div>
+    <div class="traffic-light-container-second">
+        <img class="traffic-light-second" src="assets/trafficLightRed.png">
+    </div>
+    <div class="traffic-light-container-third">
+        <img class="traffic-light-third" src="assets/trafficLightRed.png">
+    </div>
+    <div class="traffic-light-container-fourth">
+        <img class="traffic-light-fourth" src="assets/trafficLightRed.png">
+    </div>
+    <div class="car-container">
+        <img class="car" src="assets/car.png">
+    </div>
+    <div class="car-container-second">
+        <img class="car-second" src="assets/car2.png">
+    </div>
+    <div class="car-container-third">
+        <img class="car-third" src="assets/car3.png">
+    </div>
+    <div class="car-container-fourth">
+        <img class="car-fourth" src="assets/car4.png">
+    </div>
+    <div class="wall"></div>
+    <div class="wall-second"></div>
+    <div class="wall-third"></div>
+    <div class="wall-fourth"></div>
+    <script src="index.js"></script>
+
+    <script>
+        fetch('index.wasm')
+            .then(response => response.arrayBuffer())
+            .then(bytes => WebAssembly.instantiate(bytes))
+            .then(results => {
+                const instance = results.instance;
+            })
+            .catch(console.error);
+    </script>
+</body>
+</html>

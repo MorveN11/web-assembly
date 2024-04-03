@@ -1,0 +1,64 @@
+.traffic-light-container {
+    position: absolute;
+    top: 185px;
+    left: 38%;
+}
+
+.traffic-light-container-second {
+    position: absolute;
+    top: 100px; 
+    left: 38%;
+}
+
+.traffic-light-container-third {
+    position: absolute;
+    top: 100px; 
+    left: 38%;
+}
+
+.traffic-light-container-fourth {
+    position: absolute;
+    top: 100px; 
+    left: 38%;
+}
+
+.traffic-light {
+    width: 30px;
+    height: auto;
+    transform: translate(1040%, 750%) rotate(90deg);
+    animation: changeLight 10s linear infinite; 
+}
+
+.traffic-light-second {
+    width: 30px;
+    height: auto;
+    transform: translate(-160%, 450%) rotate(-90deg);
+    animation: changeLight 10s linear infinite; 
+}
+
+.traffic-light-third {
+    width: 30px;
+    height: auto;
+    transform: translate(920%, 430%);
+    animation: changeLightSecond 10s linear infinite; 
+}
+
+.traffic-light-fourth {
+    width: 30px;
+    height: auto;
+    transform: translate(-60%, 900%) rotate(-180deg);
+    animation: changeLightSecond 10s linear infinite; 
+}
+
+@keyframes changeLight {
+    0%, 45% { content: url('../assets/trafficLightRed.png'); }
+    45.1%, 90% { content: url('../assets/trafficLightGreen.png'); }
+    90.1%, 100% { content: url('../assets/trafficLightYellow.png'); }
+}
+
+@keyframes changeLightSecond {
+    0%, 35% { content: url('../assets/trafficLightGreen.png'); }
+    35.1%, 45% { content: url('../assets/trafficLightYellow.png'); }
+    45.1%, 90% { content: url('../assets/trafficLightRed.png'); }
+    90.1%, 100% { content: url('../assets/trafficLightGreen.png'); }
+}

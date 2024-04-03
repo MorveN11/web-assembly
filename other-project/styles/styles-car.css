@@ -1,0 +1,85 @@
+.car-container {
+    position: absolute;
+    top: 710px;
+    left: 30%;
+    transform: translate(0%, -100%) rotate(-90deg); 
+  }
+  
+  .car-container-second {
+    position: absolute;
+    top: 710px;
+    left: 30%;
+    transform: translate(0%, -250%) rotate(-90deg); 
+  }
+  
+  .car-container-third {
+    position: absolute;
+    top: 710px;
+    left: 30%;
+    transform: translate(400%, -250%) rotate(-180deg); 
+  }
+  
+  .car-container-fourth {
+    position: absolute;
+    top: 710px;
+    left: 30%;
+    transform: translate(730%, -250%) rotate(-180deg); 
+  }
+  
+  .car {
+    width: 40px;
+    height: auto;
+    background-color: transparent;
+    transform: translate(-20%, 80%) rotate(-90deg); 
+    animation: moveCar 3s linear infinite;
+  }
+  
+  .car-second {
+    width: 40px;
+    height: auto;
+    background-color: transparent;
+    transform: translate(-20%, 80%) rotate(180deg); 
+    animation: moveCarSecond 3s linear infinite;
+  }
+  
+  .car-third {
+    width: 40px;
+    height: auto;
+    background-color: transparent;
+    transform: translate(-20%, 80%) rotate(180deg); 
+    animation: moveCarThird 4s linear infinite;
+  }
+  
+  .car-fourth {
+    width: 40px;
+    height: auto;
+    background-color: transparent;
+    transform: translate(-20%, 80%) rotate(180deg); 
+    animation: moveCarFourth 4s linear infinite;
+  }
+  
+  @keyframes moveCar {
+    0% { transform: translateY(-37vw); }
+    100% { transform: translateY(100vw); }
+  }
+  
+  @keyframes moveCarSecond {
+    0% { transform: translateY(100vw); }
+    100% { transform: translateY(-37vw); }
+  }
+  
+  @keyframes moveCarThird {
+    0% { transform: translateY(100vw); }
+    100% { transform: translateY(-60vw); }
+  }
+  
+  @keyframes moveCarFourth {
+    0% { transform: translateY(-60vw); }
+    100% { transform: translateY(100vw); }
+  }
+  
+  @keyframes moveCarPaused {
+    from { transform: translateY(0); }
+    to { transform: translateY(0); }
+  }
+  
